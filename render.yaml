@@ -1,0 +1,17 @@
+# Render.com blueprint (optional)
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: todo-list
+    env: node
+    buildCommand: npm install
+    startCommand: npm run init-db 2>/dev/null; npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: PORT
+        value: 3000
