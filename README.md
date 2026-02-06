@@ -143,6 +143,11 @@ Uses Node.js built-in test runner. Tests hit the **tasks API** (with a test user
 
 **Note**: In production, use HTTPS and a strong `SESSION_SECRET`; sessions are stored in PostgreSQL via `connect-pg-simple`.
 
+**Deployment troubleshooting**
+
+- **Login page not showing / Server error (404)**: Deploy the **Node.js server** (this repo), not just the `public/` folder. The app needs the Express server to serve `/`, `/login`, and `/api/*`. On Render/Railway: create a **Web Service** that runs `npm start`, with `NODE_ENV=production`, `DATABASE_URL`, and `SESSION_SECRET` set.
+- **Cookies / session not working**: Set `NODE_ENV=production` so the app uses `trust proxy` and secure cookies correctly behind the platform’s proxy.
+
 ## Evaluation checklist
 
 - **Code quality**: Modular server, validation, error handling, escaped output

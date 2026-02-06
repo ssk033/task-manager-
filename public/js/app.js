@@ -256,14 +256,16 @@ $('#logout-btn').addEventListener('click', async () => {
 async function init() {
   try {
     const res = await fetch(AUTH_ME, fetchOpts);
-    if (res.status === 401) {
+    if (!res.ok) {
       redirectToLogin();
       return;
     }
     const user = await res.json().catch(() => null);
-    if (user && user.username) {
-      $('#user-name').textContent = user.username;
+    if (!user || !user.username) {
+      redirectToLogin();
+      return;
     }
+    $('#user-name').textContent = user.username;
     loadTasks();
   } catch {
     redirectToLogin();
