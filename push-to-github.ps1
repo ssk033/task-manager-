@@ -5,7 +5,7 @@
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot
 
-git config user.email "your-email@example.com"   # <-- apna GitHub email daalo
+git config user.email "sanidhyasingh1202@gmail.com"
 git config user.name "Sanidhya Singh"
 
 if (Test-Path .git\index.lock) { Remove-Item .git\index.lock -Force }
